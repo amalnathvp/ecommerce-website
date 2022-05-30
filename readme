@@ -1,20 +1,9 @@
 
-ERRORS : 
-    * There is an error in the Login page at user-helpers.js  bcrypt
-    * Cannot add different categories in the home page (in the same webpage)
-    * Also, the icons are not showing in the front end side
-
 Pending Works are:
-    * Edit banner for admin (important)
-    * Complete remaining Cart  (important)
-    * Complete Checkout page  (important)
     * Login page for admin
     * Upload good products to view better in user page
     * Add Sub Categories  (important)
     * Payment Gateway
-    * Orders
-
-
 
 localhost:3000/admin -- to view admin panel and add product
 
