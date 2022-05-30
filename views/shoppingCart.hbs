@@ -1,0 +1,122 @@
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Shopping-Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Form Section Begin -->
+
+ <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th class="p-name">Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    {{!-- <th>Total</th> --}}
+                                    <th><i class="ti-close"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if products}}
+                                {{#each products}}
+                                <tr>
+                                    {{!-- {{#each this.product}} --}}
+                                    <td class="cart-pic first-row"><img src="/images/{{this.product._id}}.jpg" alt=""></td>
+                                    <td class="cart-title first-row">
+                                        <h5>{{this.product.product_name}}</h5>
+                                    </td>
+                                    <td class="p-price first-row">{{this.product.product_price}}</td>
+                                    {{!-- {{/each}} --}}
+                                    <td class="qua-col first-row">
+                                        <a href="/shoppingCart"><button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button></a>
+                                        <span id="{{this.product._id}}">{{this.quantity}}</span>
+                                        <a href="/shoppingCart"><button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)">+</button></a>
+                                    </td>
+                                    
+                                    {{!-- {{#each this.product}} --}}
+                                    {{!-- <td class="total-price first-row">{{this.product.product_price}}</td> --}}
+                                    <td>
+                                        <a href="/shoppingCart">
+                                    <button class="btn btn-danger btn-sm rounded-0" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)" type="button" data-toggle="tooltip" data-placement="top" title="Remove">Remove</button>
+                                        </a>
+                                    </td>
+                                    {{!-- <td class="close-td first-row"><i class="ti-close"></i></td> --}}
+                                    {{!-- {{/each}} --}}
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <h1>No Products</h1>
+                                {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="cart-buttons">
+                                <a href="#" class="primary-btn continue-shop">Continue shopping</a>
+                                <a href="#" class="primary-btn up-cart">Update cart</a>
+                            </div>
+                            <div class="discount-coupon">
+                                <h6>Discount Codes</h6>
+                                <form action="#" class="coupon-form">
+                                    <input type="text" placeholder="Enter your codes">
+                                    <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-4">
+                            <div class="proceed-checkout">
+                                <ul>{{#if totalValue}}
+                                    <li class="subtotal">Subtotal <span class="total">{{totalValue}}</span></li>
+                                    <li class="cart-total">Total <span class="total">{{totalValue}}</span></li>
+                                    {{/if}}
+                                </ul>
+                                <a href="/checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+    <script>
+        function changeQuantity(cartId,proId,count){
+            let quantity = parseInt(document.getElementById(proId).innerHTML)
+            count=parseInt(count)
+
+            $.ajax({
+                url:'/change-product-quantity',
+                data:{
+                    cart:cartId,
+                    product:proId,
+                    count:count,
+                    quantity:quantity
+                },
+                method:'post',
+                success:(response)=>{
+                    if(response.removeProduct){
+                        alert("Product Removed from cart")
+                        location.reload()
+                    }else{
+                        document.getElementById(proId).innerHTML=quantity+count
+                    }
+                }
+
+            })
+        }
+    </script>

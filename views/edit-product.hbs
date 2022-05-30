@@ -1,0 +1,133 @@
+<form class="form-horizontal" action="/admin/edit-product/{{products._id}}" method="post" enctype="multipart/form-data">
+  <fieldset>
+
+    <!-- Form Name -->
+    <legend>EDIT PRODUCTS</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_id">PRODUCT ID</label>
+      <div class="col-md-4">
+        <input id="product_id" value="{{products.product_id}}" name="product_id" placeholder="PRODUCT ID"
+          class="form-control input-md" required="" type="text">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
+      <div class="col-md-4">
+        <input id="product_name" value="{{products.product_name}}" name="product_name" class="form-control input-md"
+          required="" type="text">
+
+      </div>
+    </div>
+
+
+    {{!-- <div class="form-group">
+      <label class="col-md-4 control-label" for="product_category">PRODUCT CATEGORY</label>
+      <div class="col-md-4">
+        <input id="product_category" value="{{products.product_category}}" name="product_category"
+          placeholder="PRODUCT CATEGORY" class="form-control input-md" required="" type="text">
+
+      </div>
+    </div>
+
+    <div class="form-group">
+  <label for="product subcategory">PRODUCT SUBCATEGORY</label> <br>
+  <select name="product_subcategory" id="product_subcategory">
+    <option value="Shoes">Shoes</option>
+    <option value="Clothing">Clothing</option>
+    <option value="Accessories">Accessories</option>
+    {{!-- <option value="audi">Audi</option> --}}
+  </select>
+</div> --}}
+
+<div class="form-group">
+  <label for="product category">PRODUCT CATEGORY</label> <br>
+  <select name="product_category" id="product_category">
+    <option value="Textiles">Textiles</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Educational Items">Educational Items</option>
+    <option value="Grocery">Grocery</option>
+    {{!-- <option value="audi">Audi</option> --}}
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="product subcategory">PRODUCT SUBCATEGORY</label> <br>
+  <select name="product_subcategory" id="product_subcategory">
+    <option value="Sport Wear">Sport Wear</option>
+    <option value="Casual Wear">Casual Wear</option>
+    <option value="Men">Men</option>
+    <option value="Women">Women</option>
+    <option value="Kids">Kids</option>
+    <option value="Mobile">Mobile</option>
+    <option value="Laptop">Laptop</option>
+    <option value="Notebook">Notebook</option>
+    <option value="Pencil Box">Pencil Box</option>
+    <option value="Pencil">Pencil</option>
+    <option value="Pen">Pen</option>
+    <option value="Kitechen tools">Kitechen tools</option>
+    <option value="Kitechen Products">Kitechen Products</option>
+    <option value="Cooking Incredients">Cooking Incredients</option>
+    {{!-- <option value="audi">Audi</option> --}}
+  </select>
+</div>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_category">PRODUCT PRICE</label>
+      <div class="col-md-4">
+        <input id="product_price" value="{{products.product_price}}" name="product_price" placeholder="PRODUCT PRICE"
+          class="form-control input-md" required="" type="number">
+
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_category"> PRODUCT OLD PRICE </label>
+      <div class="col-md-4">
+        <input id="product_old_price" value="{{products.product_old_price}}" name="product_old_price"
+          placeholder="PRODUCT OLD PRICE" class="form-control input-md" required="" type="number">
+
+      </div>
+    </div>
+
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_description">PRODUCT DESCRIPTION</label>
+      <div class="col-md-4">
+        <input class="form-control" value="{{products.product_description}}" id="product_description"
+          value="{{products.product_description}}" name="product_description"></input>
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="filebutton">main_image</label>
+      <div class="col-md-4">
+        <input id="image" name="image" class="input-file" type="file" onchange="viewImage(event)"> <br> <br>
+        <img src="/images/{{products._id}}.jpg" alt="" style="width:200px; height:auto" id="imgView">
+      </div>
+    </div>
+
+
+    <!-- Button -->
+    <div class="form-group">
+      <div class="col-md-4">
+        <button id="singlebutton" name="singlebutton" class="btn btn-primary">SUBMIT</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+
+<script>
+  function viewImage(event){
+    document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+  }
+</script>

@@ -1,0 +1,129 @@
+
+<h2 class="text-center"><b>Products</b></h2>
+<br>
+<button type="button" class="btn btn-primary float-right">
+<a href="/admin/add-product">Upload Files
+</a>
+
+</button> <br>
+
+<br>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Sub Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Old price</th>
+      <th scope="col">Description</th>
+      <th>Image</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each products}}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{this.product_id}}</td>
+      <td>{{this.product_name}}</td>
+      <td>{{this.product_category}}</td>
+      <td>{{this.product_subcategory}}</td>
+      <td>{{this.product_price}}</td>
+      <td>{{this.product_old_price}}</td>
+      <td>{{this.product_description}}</td>
+      <td><img style ="width: 50px; height:50px" src="/images/{{this._id}}.jpg" alt=""> </td>
+      <td>
+        <a href="/admin/edit-product/{{this._id}}">
+        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">Edit</button>
+        </a>
+        <a href="/admin/delete-product/{{this._id}}">
+        <button class="btn btn-danger btn-sm rounded-0" onclick="return confirm('Delete {{this.product_name}} ?') " type="button" data-toggle="tooltip" data-placement="top" title="Delete">Delete</button>
+        </a>
+      </td>
+    </tr>
+    
+  {{/each}}
+  </tbody>
+</table>
+
+<h2 class="text-center"><b>Banners</b></h2>
+
+<button type="button" class="btn btn-primary float-right">
+<a href="/admin/add-banner">Upload Files
+</a>
+
+</button> 
+
+<br>
+<br>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th>Image</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each banners}}
+    <tr>
+      <td>{{this.banner_name}}</td>
+      <td><img style ="width: 50px; height:50px" src="/images/{{this._id}}.jpg" alt=""> </td>
+      <td>
+        {{!-- <a href="/admin/edit-banner/{{this._id}}">
+        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit">Edit</button>
+        </a> --}}
+        <a href="/admin/delete-banner/{{this._id}}">
+        <button class="btn btn-danger btn-sm rounded-0" onclick="return confirm('Delete {{this.banner_name}} ?') " type="button" data-toggle="tooltip" data-placement="top" title="Delete">Delete</button>
+        </a>
+      </td>
+    </tr>
+    
+  {{/each}}
+  </tbody>
+</table>
+
+<h2><b>Orders</b></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Product</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Payment Method</th>
+    </tr>
+  </thead>
+  {{#each orders}}
+  <tbody>
+    <tr>
+      <td> {{deliveryDetails.first_name}}  {{deliveryDetails.last_name}}</td>
+      <td>{{deliveryDetails.town}} 
+ {{deliveryDetails.street_address}} 
+ {{deliveryDetails.postcode}} 
+ {{deliveryDetails.country}}</td>
+ {{#product}}
+      <td>{{product.product_name}}</td>
+      <td>{{product.product_price}}</td>
+      {{/product}}
+      <td>{{paymentMethod}}</td>
+    </tr>
+  </tbody>
+    {{/each}}
+</table>
+
+
+
+
+
+
+
+
+
